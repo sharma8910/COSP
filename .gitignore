@@ -1,0 +1,8 @@
+server/node_modules/
+dashboard/node_modules/
+dashboard/dist/
+ai-worker/.venv/
+ai-worker/chroma_data/
+ai-worker/__pycache__/
+server/.env
+dashboard/.env

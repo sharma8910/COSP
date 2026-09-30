@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Fraunces", serif;
+}
+
+@layer base {
+  html { font-family: "DM Sans", sans-serif; }
+  body { margin: 0; background: #F4F1EA; }
+  button, input, select { font: inherit; }
+}
+
+@utility font-display {
+  font-family: "Fraunces", serif;
+}

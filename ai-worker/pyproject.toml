@@ -1,0 +1,24 @@
+[project]
+name = "ai-worker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "sharma8910", email = "sonu9123641936@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "chromadb>=1.5.9",
+    "fastapi>=0.141.1",
+    "requests>=2.34.2",
+    "sentence-transformers>=6.0.1",
+    "uvicorn>=0.52.4",
+]
+
+[project.scripts]
+ai-worker = "ai_worker:main"
+
+[build-system]
+requires = ["uv_build>=0.12.11,<0.13.0"]
+build-backend = "uv_build"
