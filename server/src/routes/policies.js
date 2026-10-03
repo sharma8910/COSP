@@ -120,20 +120,34 @@ router.post('/check', async (request, response, next) => {
     let reason;
     
     if (allMatching.length === 0) {
-      const aiHelp = await fetch("http://localhost:8000/work", {
+      try{
+        const aiHelp = await fetch("http://localhost:8000/work", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
         },
         body: JSON.stringify({domain: domain})
       });
+      
+      
 
       const aiResult = await aiHelp.json();
 
       result = aiResult;
       descision = aiResult.descision;
       reason = aiResult.reason;
-    }
+      }
+      catch (error){
+       
+        descision = "ALLOW";
+        reason = "ai_help_unavailable";
+        result = { descision, domain, reason };
+        console.error("No fetching AI help sorry as it cant be deploy in free tier", error);
+        
+
+
+      }
+    } 
     
 
     else {
