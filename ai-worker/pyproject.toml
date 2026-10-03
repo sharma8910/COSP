@@ -22,3 +22,12 @@ ai-worker = "ai_worker:main"
 [build-system]
 requires = ["uv_build>=0.12.11,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv.sources]
+torch = [
+    {index = "pytorch-cpu" },
+]
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
