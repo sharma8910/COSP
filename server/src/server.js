@@ -26,7 +26,7 @@ app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, limit: 30 }), authRou
 app.use('/api/children', childrenRoutes);
 app.use('/api/policies', policiesRoutes);
 app.use('/api/activity', activityRoutes);
-app.use('/health', (request, response) => response.json({ message: 'Child Safety API is running' }));
+app.use('/health', response.json({ message: 'Child Safety API is running' }));
 app.use((error, request, response, next) => {
   console.error(error);
   response.status(500).json({ error: 'Internal server error' });
