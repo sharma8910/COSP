@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fetch_text import fetch_text
-from res import classify_domain
+from res import classify_domain,initialize
 
 app = FastAPI()
 
@@ -19,3 +19,6 @@ def check_domain(request: DomainRequest):
 
     return decision
 
+@app.on_event("startup")
+def startup():
+    initialize()

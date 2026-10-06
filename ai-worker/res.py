@@ -2,14 +2,19 @@ import chromadb
 from fetch_text import fetch_text
 
 from sentence_transformers import SentenceTransformer
+model = None
+client = None
+collection = None
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+def initialize():
+  global model,client , collection
+  model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
-client = chromadb.PersistentClient(path = "./chroma_data")
-collection = client.get_or_create_collection("categories")
+  client = chromadb.PersistentClient(path = "./chroma_data")
+  collection = client.get_or_create_collection("categories")
 
-know = [
+  know = [
     # gambling
     {"id": "g1", "text": "online casino gambling betting real money slots poker", "category": "gambling"},
     {"id": "g2", "text": "sports betting odds place your bet win big", "category": "gambling"},
@@ -76,20 +81,19 @@ know = [
 ]
 
 
-if collection.count() == 0:
+  if collection.count() == 0:
 
-  for now in know:
-    embed = model.encode(now["text"]).tolist()
-    collection.add(
+    for now in know:
+     embed = model.encode(now["text"]).tolist()
+     collection.add(
      ids = [now["id"]],
      embeddings=[embed],
      documents=[now["text"]],
      metadatas=[{"category" : now["category"]}]  
   )
 
-else:
-  print("collection aleardy there" ,collection.count(),collection)
-
+  else:
+   print("collection aleardy there" ,collection.count(),collection)
 
 BAD_CATEGORIES = {"gambling", "violence", "adult","sexual","pornography","drugs","hate_speech","terrorism","malware","phishing"}
 DISTANCE_THRESHOLD = 1.5
@@ -108,20 +112,20 @@ def classify_domain(domain: str) -> dict:
 
   
   if category in BAD_CATEGORIES and distance < DISTANCE_THRESHOLD:
-    descision = "BLOCK"
-    reason = f"ai_classified{category}"
+      descision = "BLOCK"
+      reason = f"ai_classified{category}"
 
   else: 
-    descision = "ALLOW"
-    reason = "ai_ok"
+     descision = "ALLOW"
+     reason = "ai_ok"
 
   return {
-    "domain": domain,
+      "domain": domain,
         "category": category,
         "distance": distance,
         "descision": descision,
         "reason": reason,
-  }
+   }
 
 
   
