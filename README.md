@@ -4,11 +4,13 @@ A Chrome extension that enforces a parent's website rules on a child's device in
 
 Built as a hands-on learning project to go deep on browser extension development, caching strategy, system design, and applied ML, rather than to ship a polished product.
 
-**Live API:** https://cosp-server-9n60.onrender.com
+**Live:** https://cosp-1.onrender.com/
 
 ---
 
 ## 🧩 The Extension — the core of the system
+
+**Live API:** https://cosp-server-9n60.onrender.com
 
 The Chrome Manifest V3 extension is what actually runs on the child's device. It watches every site the child navigates to, checks it against the parent's rules (via the API below), and blocks disallowed sites immediately with a clear block page — not a generic browser error.
 
