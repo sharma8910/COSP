@@ -38,7 +38,7 @@ router.post('/login', async (request, response, next) => {
 });
 
 router.post('/logout', (request, response) => {
-  response.clearCookie(config.cookieName, { httpOnly: true, secure: config.isProduction, sameSite: 'lax' });
+  response.clearCookie(config.cookieName, { httpOnly: true, secure: config.isProduction, sameSite: 'none' });
   return response.status(204).send();
 });
 

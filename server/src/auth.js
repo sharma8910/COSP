@@ -8,7 +8,7 @@ export function setSessionCookie(response, userId) {
     httpOnly: true,//cookie is not accessible via JavaScript in 
                      //the browser, which helps prevent XSS attacks
     secure: config.isProduction,
-    sameSite: 'lax',
+    sameSite: 'none',
     maxAge: 7 * 24 * 60 * 60 * 1000
   });
 }
